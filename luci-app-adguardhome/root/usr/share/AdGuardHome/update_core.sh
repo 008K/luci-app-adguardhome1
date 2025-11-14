@@ -154,6 +154,7 @@ Update_Core(){
 
 GET_Arch() {
 	Archt="$(opkg info kernel | grep Architecture | awk -F "[ _]" '{print($2)}')"
+	Archt_v="$(opkg info kernel | grep Architecture | awk -F "[ _]" '{print($3)}')"
 	case "${Archt}" in
 	"i386")
 		Arch="386"
@@ -181,7 +182,10 @@ GET_Arch() {
 		echo -e "mips64 use $Arch may have bug"
 	;;
 	"arm")
-		Arch="arm"
+		if[["${Archt_v}" == "cortex-a7"]]; then
+			Arch="armv7"
+		else
+			Arch="arm"
 		;;
 	"aarch64")
 		Arch="arm64"
