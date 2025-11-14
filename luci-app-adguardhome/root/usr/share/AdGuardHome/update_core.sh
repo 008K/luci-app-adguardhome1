@@ -182,7 +182,7 @@ GET_Arch() {
 		echo -e "mips64 use $Arch may have bug"
 		;;
 	"arm")
-		if[[ "${Archt_v}" == "cortex-a7" ]]; then
+		if [[ "${Archt_v}" == "cortex-a7" ]]; then
 			Arch="armv7"
 		else
 			Arch="arm"
